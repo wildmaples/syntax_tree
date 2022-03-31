@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class SyntaxTree::ParseError - RDoc Documentation</title>
+<title>class SyntaxTree::Visitor - RDoc Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -61,7 +61,7 @@
 <div id="parent-class-section" class="nav-section">
   <h3>Parent</h3>
 
-  <p class="link">StandardError
+  <p class="link">Object
 </div>
 
     
@@ -72,81 +72,71 @@
   <h3>Methods</h3>
 
   <ul class="link-list" role="directory">
-    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    <li ><a href="#method-i-visit">#visit</a>
+    <li ><a href="#method-i-visit_all">#visit_all</a>
   </ul>
 </div>
 
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-SyntaxTree::ParseError">
-  <h1 id="class-SyntaxTree::ParseError" class="class">
-    class SyntaxTree::ParseError
+<main role="main" aria-labelledby="class-SyntaxTree::Visitor">
+  <h1 id="class-SyntaxTree::Visitor" class="class">
+    class SyntaxTree::Visitor
   </h1>
 
   <section class="description">
     
-<p>A special parser error so that we can get nice syntax displays on the error message when prettier prints out the results.</p>
-
   </section>
 
   <section id="5Buntitled-5D" class="documentation-section">
 
 
 
-    <section class="attribute-method-details" class="method-section">
-      <header>
-        <h3>Attributes</h3>
-      </header>
-
-      <div id="attribute-i-column" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">column</span><span
-            class="attribute-access-type">[R]</span>
-        </div>
-
-        <div class="method-description">
-        
-        </div>
-      </div>
-      <div id="attribute-i-lineno" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">lineno</span><span
-            class="attribute-access-type">[R]</span>
-        </div>
-
-        <div class="method-description">
-        
-        </div>
-      </div>
-    </section>
 
 
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
-         <h3>Public Class Methods</h3>
+         <h3>Public Instance Methods</h3>
        </header>
 
-      <div id="method-c-new" class="method-detail ">
+      <div id="method-i-visit" class="method-detail ">
         <div class="method-heading">
-          <span class="method-name">new</span><span
-            class="method-args">(error, lineno, column)</span>
+          <span class="method-name">visit</span><span
+            class="method-args">(node)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
           
-            <div class="method-calls-super">
-              Calls superclass method
-              
-            </div>
 
-          <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree.rb, line 117</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">error</span>, <span class="ruby-identifier">lineno</span>, <span class="ruby-identifier">column</span>)
-  <span class="ruby-keyword">super</span>(<span class="ruby-identifier">error</span>)
-  <span class="ruby-ivar">@lineno</span> = <span class="ruby-identifier">lineno</span>
-  <span class="ruby-ivar">@column</span> = <span class="ruby-identifier">column</span>
+          <div class="method-source-code" id="visit-source">
+            <pre><span class="ruby-comment"># File lib/syntax_tree/visitor.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit</span>(<span class="ruby-identifier">node</span>)
+  <span class="ruby-identifier">node</span>&amp;.<span class="ruby-identifier">accept</span>(<span class="ruby-keyword">self</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-visit_all" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">visit_all</span><span
+            class="method-args">(nodes)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="visit_all-source">
+            <pre><span class="ruby-comment"># File lib/syntax_tree/visitor.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_all</span>(<span class="ruby-identifier">nodes</span>)
+  <span class="ruby-identifier">nodes</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">node</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">visit</span>(<span class="ruby-identifier">node</span>)
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
