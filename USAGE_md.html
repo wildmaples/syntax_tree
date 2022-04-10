@@ -112,7 +112,7 @@
 
 <p>Using <code>#child_nodes</code> we can get an array of child nodes for any particular <code>SyntaxTree::Node</code>. In this case, the command node’s child nodes are the method name and the arguments.</p>
 
-<p>We are only interested in the arguments, so we can use instance method <code>#arguments</code> to access the <code>Syntax::Args</code> node directly.</p>
+<p>We are only interested in the arguments, so we can use the instance method <code>#arguments</code> to access the <code>Syntax::Args</code> node directly.</p>
 
 <pre class="ruby"><span class="ruby-identifier">puts_command</span>.<span class="ruby-identifier">child_nodes</span>
 <span class="ruby-comment"># =&gt; [(ident &quot;puts&quot;), (args ((binary (int &quot;1&quot;) :+ (int &quot;1&quot;))))]</span>
