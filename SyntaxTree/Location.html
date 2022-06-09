@@ -76,9 +76,10 @@
     <li ><a href="#method-c-new">::new</a>
     <li ><a href="#method-c-token">::token</a>
     <li ><a href="#method-i-3D-3D">#==</a>
+    <li ><a href="#method-i-deconstruct">#deconstruct</a>
+    <li ><a href="#method-i-deconstruct_keys">#deconstruct_keys</a>
     <li ><a href="#method-i-lines">#lines</a>
     <li ><a href="#method-i-to">#to</a>
-    <li ><a href="#method-i-to_json">#to_json</a>
   </ul>
 </div>
 
@@ -115,6 +116,16 @@
         
         </div>
       </div>
+      <div id="attribute-i-end_column" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">end_column</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        </div>
+      </div>
       <div id="attribute-i-end_line" class="method-detail">
         <div class="method-heading attribute-method-heading">
           <span class="method-name">end_line</span><span
@@ -128,6 +139,16 @@
       <div id="attribute-i-start_char" class="method-detail">
         <div class="method-heading attribute-method-heading">
           <span class="method-name">start_char</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        </div>
+      </div>
+      <div id="attribute-i-start_column" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">start_column</span><span
             class="attribute-access-type">[R]</span>
         </div>
 
@@ -156,7 +177,7 @@
       <div id="method-c-fixed" class="method-detail ">
         <div class="method-heading">
           <span class="method-name">fixed</span><span
-            class="method-args">(line:, char:)</span>
+            class="method-args">(line:, char:, column:)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
 
@@ -164,9 +185,16 @@
           
 
           <div class="method-source-code" id="fixed-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 49</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">fixed</span>(<span class="ruby-value">line:</span>, <span class="ruby-value">char:</span>)
-  <span class="ruby-identifier">new</span>(<span class="ruby-value">start_line:</span> <span class="ruby-identifier">line</span>, <span class="ruby-value">start_char:</span> <span class="ruby-identifier">char</span>, <span class="ruby-value">end_line:</span> <span class="ruby-identifier">line</span>, <span class="ruby-value">end_char:</span> <span class="ruby-identifier">char</span>)
+            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 76</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">fixed</span>(<span class="ruby-value">line:</span>, <span class="ruby-value">char:</span>, <span class="ruby-value">column:</span>)
+  <span class="ruby-identifier">new</span>(
+    <span class="ruby-value">start_line:</span> <span class="ruby-identifier">line</span>,
+    <span class="ruby-value">start_char:</span> <span class="ruby-identifier">char</span>,
+    <span class="ruby-value">start_column:</span> <span class="ruby-identifier">column</span>,
+    <span class="ruby-value">end_line:</span> <span class="ruby-identifier">line</span>,
+    <span class="ruby-value">end_char:</span> <span class="ruby-identifier">char</span>,
+    <span class="ruby-value">end_column:</span> <span class="ruby-identifier">column</span>
+  )
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -177,7 +205,7 @@
       <div id="method-c-new" class="method-detail ">
         <div class="method-heading">
           <span class="method-name">new</span><span
-            class="method-args">(start_line:, start_char:, end_line:, end_char:)</span>
+            class="method-args">( start_line:, start_char:, start_column:, end_line:, end_char:, end_column: )</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
 
@@ -185,12 +213,21 @@
           
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 10</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-value">start_line:</span>, <span class="ruby-value">start_char:</span>, <span class="ruby-value">end_line:</span>, <span class="ruby-value">end_char:</span>)
+            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(
+  <span class="ruby-value">start_line:</span>,
+  <span class="ruby-value">start_char:</span>,
+  <span class="ruby-value">start_column:</span>,
+  <span class="ruby-value">end_line:</span>,
+  <span class="ruby-value">end_char:</span>,
+  <span class="ruby-value">end_column:</span>
+)
   <span class="ruby-ivar">@start_line</span> = <span class="ruby-identifier">start_line</span>
   <span class="ruby-ivar">@start_char</span> = <span class="ruby-identifier">start_char</span>
+  <span class="ruby-ivar">@start_column</span> = <span class="ruby-identifier">start_column</span>
   <span class="ruby-ivar">@end_line</span> = <span class="ruby-identifier">end_line</span>
   <span class="ruby-ivar">@end_char</span> = <span class="ruby-identifier">end_char</span>
+  <span class="ruby-ivar">@end_column</span> = <span class="ruby-identifier">end_column</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -201,7 +238,7 @@
       <div id="method-c-token" class="method-detail ">
         <div class="method-heading">
           <span class="method-name">token</span><span
-            class="method-args">(line:, char:, size:)</span>
+            class="method-args">(line:, char:, column:, size:)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
 
@@ -209,13 +246,15 @@
           
 
           <div class="method-source-code" id="token-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 40</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">token</span>(<span class="ruby-value">line:</span>, <span class="ruby-value">char:</span>, <span class="ruby-value">size:</span>)
+            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">token</span>(<span class="ruby-value">line:</span>, <span class="ruby-value">char:</span>, <span class="ruby-value">column:</span>, <span class="ruby-value">size:</span>)
   <span class="ruby-identifier">new</span>(
     <span class="ruby-value">start_line:</span> <span class="ruby-identifier">line</span>,
     <span class="ruby-value">start_char:</span> <span class="ruby-identifier">char</span>,
+    <span class="ruby-value">start_column:</span> <span class="ruby-identifier">column</span>,
     <span class="ruby-value">end_line:</span> <span class="ruby-identifier">line</span>,
-    <span class="ruby-value">end_char:</span> <span class="ruby-identifier">char</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">size</span>
+    <span class="ruby-value">end_char:</span> <span class="ruby-identifier">char</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">size</span>,
+    <span class="ruby-value">end_column:</span> <span class="ruby-identifier">column</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">size</span>
   )
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -242,11 +281,60 @@
           
 
           <div class="method-source-code" id="3D-3D-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 21</span>
+            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">==</span>(<span class="ruby-identifier">other</span>)
   <span class="ruby-identifier">other</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Location</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">start_line</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">start_line</span> <span class="ruby-operator">&amp;&amp;</span>
     <span class="ruby-identifier">start_char</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">start_char</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">end_line</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">end_line</span> <span class="ruby-operator">&amp;&amp;</span>
     <span class="ruby-identifier">end_char</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">end_char</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-deconstruct" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">deconstruct</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="deconstruct-source">
+            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 50</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">deconstruct</span>
+  [<span class="ruby-identifier">start_line</span>, <span class="ruby-identifier">start_char</span>, <span class="ruby-identifier">start_column</span>, <span class="ruby-identifier">end_line</span>, <span class="ruby-identifier">end_char</span>, <span class="ruby-identifier">end_column</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-deconstruct_keys" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">deconstruct_keys</span><span
+            class="method-args">(_keys)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="deconstruct_keys-source">
+            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">deconstruct_keys</span>(<span class="ruby-identifier">_keys</span>)
+  {
+    <span class="ruby-value">start_line:</span> <span class="ruby-identifier">start_line</span>,
+    <span class="ruby-value">start_char:</span> <span class="ruby-identifier">start_char</span>,
+    <span class="ruby-value">start_column:</span> <span class="ruby-identifier">start_column</span>,
+    <span class="ruby-value">end_line:</span> <span class="ruby-identifier">end_line</span>,
+    <span class="ruby-value">end_char:</span> <span class="ruby-identifier">end_char</span>,
+    <span class="ruby-value">end_column:</span> <span class="ruby-identifier">end_column</span>
+  }
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -265,7 +353,7 @@
           
 
           <div class="method-source-code" id="lines-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 17</span>
+            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">lines</span>
   <span class="ruby-identifier">start_line</span><span class="ruby-operator">..</span><span class="ruby-identifier">end_line</span>
 <span class="ruby-keyword">end</span></pre>
@@ -286,35 +374,16 @@
           
 
           <div class="method-source-code" id="to-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 27</span>
+            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to</span>(<span class="ruby-identifier">other</span>)
   <span class="ruby-constant">Location</span>.<span class="ruby-identifier">new</span>(
     <span class="ruby-value">start_line:</span> <span class="ruby-identifier">start_line</span>,
     <span class="ruby-value">start_char:</span> <span class="ruby-identifier">start_char</span>,
+    <span class="ruby-value">start_column:</span> <span class="ruby-identifier">start_column</span>,
     <span class="ruby-value">end_line:</span> [<span class="ruby-identifier">end_line</span>, <span class="ruby-identifier">other</span>.<span class="ruby-identifier">end_line</span>].<span class="ruby-identifier">max</span>,
-    <span class="ruby-value">end_char:</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">end_char</span>
+    <span class="ruby-value">end_char:</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">end_char</span>,
+    <span class="ruby-value">end_column:</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">end_column</span>
   )
-<span class="ruby-keyword">end</span></pre>
-          </div>
-        </div>
-
-
-      </div>
-
-      <div id="method-i-to_json" class="method-detail ">
-        <div class="method-heading">
-          <span class="method-name">to_json</span><span
-            class="method-args">(*opts)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-
-        <div class="method-description">
-          
-
-          <div class="method-source-code" id="to_json-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 36</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_json</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">opts</span>)
-  [<span class="ruby-identifier">start_line</span>, <span class="ruby-identifier">start_char</span>, <span class="ruby-identifier">end_line</span>, <span class="ruby-identifier">end_char</span>].<span class="ruby-identifier">to_json</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">opts</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>

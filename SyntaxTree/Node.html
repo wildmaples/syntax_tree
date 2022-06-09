@@ -74,6 +74,7 @@
   <ul class="link-list" role="directory">
     <li ><a href="#method-i-accept">#accept</a>
     <li ><a href="#method-i-child_nodes">#child_nodes</a>
+    <li ><a href="#method-i-construct_keys">#construct_keys</a>
     <li ><a href="#method-i-deconstruct">#deconstruct</a>
     <li ><a href="#method-i-deconstruct_keys">#deconstruct_keys</a>
     <li ><a href="#method-i-format">#format</a>
@@ -137,7 +138,7 @@
           
 
           <div class="method-source-code" id="accept-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 61</span>
+            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">accept</span>(<span class="ruby-identifier">visitor</span>)
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>
 <span class="ruby-keyword">end</span></pre>
@@ -158,9 +159,30 @@
           
 
           <div class="method-source-code" id="child_nodes-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 65</span>
+            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 99</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">child_nodes</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-construct_keys" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">construct_keys</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="construct_keys-source">
+            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 125</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">construct_keys</span>
+  <span class="ruby-constant">PrettierPrint</span>.<span class="ruby-identifier">format</span>(<span class="ruby-string">+&quot;&quot;</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">q</span><span class="ruby-operator">|</span> <span class="ruby-constant">Visitor</span><span class="ruby-operator">::</span><span class="ruby-constant">MatchVisitor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">q</span>).<span class="ruby-identifier">visit</span>(<span class="ruby-keyword">self</span>) }
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -179,7 +201,7 @@
           
 
           <div class="method-source-code" id="deconstruct-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 69</span>
+            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 103</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">deconstruct</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>
 <span class="ruby-keyword">end</span></pre>
@@ -200,7 +222,7 @@
           
 
           <div class="method-source-code" id="deconstruct_keys-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 73</span>
+            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 107</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">deconstruct_keys</span>(<span class="ruby-identifier">keys</span>)
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>
 <span class="ruby-keyword">end</span></pre>
@@ -221,7 +243,7 @@
           
 
           <div class="method-source-code" id="format-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 77</span>
+            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 111</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">format</span>(<span class="ruby-identifier">q</span>)
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>
 <span class="ruby-keyword">end</span></pre>
@@ -242,9 +264,10 @@
           
 
           <div class="method-source-code" id="pretty_print-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 81</span>
+            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 115</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">pretty_print</span>(<span class="ruby-identifier">q</span>)
-  <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>
+  <span class="ruby-identifier">visitor</span> = <span class="ruby-constant">Visitor</span><span class="ruby-operator">::</span><span class="ruby-constant">PrettyPrintVisitor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">q</span>)
+  <span class="ruby-identifier">visitor</span>.<span class="ruby-identifier">visit</span>(<span class="ruby-keyword">self</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -263,9 +286,10 @@
           
 
           <div class="method-source-code" id="to_json-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 85</span>
+            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 120</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_json</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">opts</span>)
-  <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>
+  <span class="ruby-identifier">visitor</span> = <span class="ruby-constant">Visitor</span><span class="ruby-operator">::</span><span class="ruby-constant">JSONVisitor</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">visitor</span>.<span class="ruby-identifier">visit</span>(<span class="ruby-keyword">self</span>).<span class="ruby-identifier">to_json</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">opts</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>

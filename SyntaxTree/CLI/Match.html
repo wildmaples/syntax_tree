@@ -4,21 +4,21 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class PrettyPrint::Trim - RDoc Documentation</title>
+<title>class SyntaxTree::CLI::Match - RDoc Documentation</title>
 
 <script type="text/javascript">
-  var rdoc_rel_prefix = "../";
-  var index_rel_prefix = "../";
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
 </script>
 
-<script src="../js/navigation.js" defer></script>
-<script src="../js/search.js" defer></script>
-<script src="../js/search_index.js" defer></script>
-<script src="../js/searcher.js" defer></script>
-<script src="../js/darkfish.js" defer></script>
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
 
-<link href="../css/fonts.css" rel="stylesheet">
-<link href="../css/rdoc.css" rel="stylesheet">
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
 
 
 <body id="top" role="document" class="class">
@@ -26,13 +26,13 @@
   <div id="project-navigation">
     <div id="home-section" role="region" title="Quick navigation" class="nav-section">
   <h2>
-    <a href="../index.html" rel="home">Home</a>
+    <a href="../../index.html" rel="home">Home</a>
   </h2>
 
   <div id="table-of-contents-navigation">
-    <a href="../table_of_contents.html#pages">Pages</a>
-    <a href="../table_of_contents.html#classes">Classes</a>
-    <a href="../table_of_contents.html#methods">Methods</a>
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
   </div>
 </div>
 
@@ -61,7 +61,7 @@
 <div id="parent-class-section" class="nav-section">
   <h3>Parent</h3>
 
-  <p class="link">Object
+  <p class="link"><a href="Action.html">SyntaxTree::CLI::Action</a>
 </div>
 
     
@@ -72,21 +72,21 @@
   <h3>Methods</h3>
 
   <ul class="link-list" role="directory">
-    <li ><a href="#method-i-pretty_print">#pretty_print</a>
+    <li ><a href="#method-i-run">#run</a>
   </ul>
 </div>
 
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-PrettyPrint::Trim">
-  <h1 id="class-PrettyPrint::Trim" class="class">
-    class PrettyPrint::Trim
+<main role="main" aria-labelledby="class-SyntaxTree::CLI::Match">
+  <h1 id="class-SyntaxTree::CLI::Match" class="class">
+    class SyntaxTree::CLI::Match
   </h1>
 
   <section class="description">
     
-<p>A node in the print tree that represents trimming all of the indentation of the current line, in the rare case that you need to ignore the indentation that you’ve already created. This node should be placed after a <a href="Breakable.html"><code>Breakable</code></a>.</p>
+<p>An action of the <a href="../CLI.html"><code>CLI</code></a> that outputs a pattern-matching Ruby expression that would match the input given.</p>
 
   </section>
 
@@ -101,20 +101,20 @@
          <h3>Public Instance Methods</h3>
        </header>
 
-      <div id="method-i-pretty_print" class="method-detail ">
+      <div id="method-i-run" class="method-detail ">
         <div class="method-heading">
-          <span class="method-name">pretty_print</span><span
-            class="method-args">(q)</span>
+          <span class="method-name">run</span><span
+            class="method-args">(handler, _filepath, source)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
           
 
-          <div class="method-source-code" id="pretty_print-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/prettyprint.rb, line 260</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">pretty_print</span>(<span class="ruby-identifier">q</span>)
-  <span class="ruby-identifier">q</span>.<span class="ruby-identifier">text</span>(<span class="ruby-string">&quot;trim&quot;</span>)
+          <div class="method-source-code" id="run-source">
+            <pre><span class="ruby-comment"># File lib/syntax_tree/cli.rb, line 131</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">run</span>(<span class="ruby-identifier">handler</span>, <span class="ruby-identifier">_filepath</span>, <span class="ruby-identifier">source</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">source</span>).<span class="ruby-identifier">construct_keys</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>

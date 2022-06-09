@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class SyntaxTree::Comment::List - RDoc Documentation</title>
+<title>class SyntaxTree::BasicVisitor::VisitMethodChecker - RDoc Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../../";
@@ -73,20 +73,22 @@
 
   <ul class="link-list" role="directory">
     <li ><a href="#method-c-new">::new</a>
-    <li ><a href="#method-i-pretty_print">#pretty_print</a>
+    <li ><a href="#method-i-corrections">#corrections</a>
   </ul>
 </div>
 
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-SyntaxTree::Comment::List">
-  <h1 id="class-SyntaxTree::Comment::List" class="class">
-    class SyntaxTree::Comment::List
+<main role="main" aria-labelledby="class-SyntaxTree::BasicVisitor::VisitMethodChecker">
+  <h1 id="class-SyntaxTree::BasicVisitor::VisitMethodChecker" class="class">
+    class SyntaxTree::BasicVisitor::VisitMethodChecker
   </h1>
 
   <section class="description">
     
+<p>This class is used by DidYouMean to offer corrections to invalid visit method names.</p>
+
   </section>
 
   <section id="5Buntitled-5D" class="documentation-section">
@@ -98,17 +100,14 @@
         <h3>Attributes</h3>
       </header>
 
-      <div id="attribute-i-comments" class="method-detail">
+      <div id="attribute-i-visit_method" class="method-detail">
         <div class="method-heading attribute-method-heading">
-          <span class="method-name">comments</span><span
+          <span class="method-name">visit_method</span><span
             class="attribute-access-type">[R]</span>
         </div>
 
         <div class="method-description">
-        <dl class="rdoc-list label-list"><dt>Array[ <a href="../Comment.html"><code>Comment</code></a> ]
-<dd>
-<p>the list of comments this list represents</p>
-</dd></dl>
+        
         </div>
       </div>
     </section>
@@ -122,7 +121,7 @@
       <div id="method-c-new" class="method-detail ">
         <div class="method-heading">
           <span class="method-name">new</span><span
-            class="method-args">(comments)</span>
+            class="method-args">(error)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
 
@@ -130,9 +129,9 @@
           
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 3475</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">comments</span>)
-  <span class="ruby-ivar">@comments</span> = <span class="ruby-identifier">comments</span>
+            <pre><span class="ruby-comment"># File lib/syntax_tree/basic_visitor.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">error</span>)
+  <span class="ruby-ivar">@visit_method</span> = <span class="ruby-identifier">error</span>.<span class="ruby-identifier">visit_method</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -147,23 +146,23 @@
          <h3>Public Instance Methods</h3>
        </header>
 
-      <div id="method-i-pretty_print" class="method-detail ">
+      <div id="method-i-corrections" class="method-detail ">
         <div class="method-heading">
-          <span class="method-name">pretty_print</span><span
-            class="method-args">(q)</span>
+          <span class="method-name">corrections</span><span
+            class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
           
 
-          <div class="method-source-code" id="pretty_print-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 3479</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">pretty_print</span>(<span class="ruby-identifier">q</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">comments</span>.<span class="ruby-identifier">empty?</span>
-
-  <span class="ruby-identifier">q</span>.<span class="ruby-identifier">breakable</span>
-  <span class="ruby-identifier">q</span>.<span class="ruby-identifier">group</span>(<span class="ruby-value">2</span>, <span class="ruby-string">&quot;(&quot;</span>, <span class="ruby-string">&quot;)&quot;</span>) { <span class="ruby-identifier">q</span>.<span class="ruby-identifier">seplist</span>(<span class="ruby-identifier">comments</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">comment</span><span class="ruby-operator">|</span> <span class="ruby-identifier">q</span>.<span class="ruby-identifier">pp</span>(<span class="ruby-identifier">comment</span>) } }
+          <div class="method-source-code" id="corrections-source">
+            <pre><span class="ruby-comment"># File lib/syntax_tree/basic_visitor.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">corrections</span>
+  <span class="ruby-ivar">@corrections</span> <span class="ruby-operator">||=</span>
+    <span class="ruby-constant">DidYouMean</span><span class="ruby-operator">::</span><span class="ruby-constant">SpellChecker</span>.<span class="ruby-identifier">new</span>(
+      <span class="ruby-value">dictionary:</span> <span class="ruby-constant">Visitor</span>.<span class="ruby-identifier">visit_methods</span>
+    ).<span class="ruby-identifier">correct</span>(<span class="ruby-identifier">visit_method</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>

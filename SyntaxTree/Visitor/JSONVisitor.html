@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class PrettyPrint::SingleLine::IfBreakBuilder - RDoc Documentation</title>
+<title>class SyntaxTree::Visitor::JSONVisitor - RDoc Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../../";
@@ -61,7 +61,7 @@
 <div id="parent-class-section" class="nav-section">
   <h3>Parent</h3>
 
-  <p class="link">Object
+  <p class="link"><a href="FieldVisitor.html">SyntaxTree::Visitor::FieldVisitor</a>
 </div>
 
     
@@ -72,21 +72,21 @@
   <h3>Methods</h3>
 
   <ul class="link-list" role="directory">
-    <li ><a href="#method-i-if_flat">#if_flat</a>
+    <li ><a href="#method-c-new">::new</a>
   </ul>
 </div>
 
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-PrettyPrint::SingleLine::IfBreakBuilder">
-  <h1 id="class-PrettyPrint::SingleLine::IfBreakBuilder" class="class">
-    class PrettyPrint::SingleLine::IfBreakBuilder
+<main role="main" aria-labelledby="class-SyntaxTree::Visitor::JSONVisitor">
+  <h1 id="class-SyntaxTree::Visitor::JSONVisitor" class="class">
+    class SyntaxTree::Visitor::JSONVisitor
   </h1>
 
   <section class="description">
     
-<p>A class that wraps the ability to call <a href="IfBreakBuilder.html#method-i-if_flat"><code>if_flat</code></a>. The contents of the <a href="IfBreakBuilder.html#method-i-if_flat"><code>if_flat</code></a> block are executed immediately, so effectively this class and the if_break method that triggers it are unnecessary, but they’re here to maintain compatibility.</p>
+<p>This visitor transforms the AST into a hash that contains only primitives that can be easily serialized into JSON.</p>
 
   </section>
 
@@ -94,27 +94,43 @@
 
 
 
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      <div id="attribute-i-target" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">target</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        </div>
+      </div>
+    </section>
 
 
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
        <header>
-         <h3>Public Instance Methods</h3>
+         <h3>Public Class Methods</h3>
        </header>
 
-      <div id="method-i-if_flat" class="method-detail ">
+      <div id="method-c-new" class="method-detail ">
         <div class="method-heading">
-          <span class="method-name">if_flat</span><span
-            class="method-args">() { || ... }</span>
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
           
 
-          <div class="method-source-code" id="if_flat-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/prettyprint.rb, line 451</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">if_flat</span>
-  <span class="ruby-keyword">yield</span>
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/syntax_tree/visitor/json_visitor.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
+  <span class="ruby-ivar">@target</span> = <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
