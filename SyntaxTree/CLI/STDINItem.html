@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class SyntaxTree::HshPtn::KeywordRestFormatter - RDoc Documentation</title>
+<title>class SyntaxTree::CLI::STDINItem - RDoc Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../../";
@@ -72,23 +72,23 @@
   <h3>Methods</h3>
 
   <ul class="link-list" role="directory">
-    <li ><a href="#method-c-new">::new</a>
-    <li ><a href="#method-i-comments">#comments</a>
-    <li ><a href="#method-i-format">#format</a>
+    <li ><a href="#method-i-filepath">#filepath</a>
+    <li ><a href="#method-i-handler">#handler</a>
+    <li ><a href="#method-i-source">#source</a>
   </ul>
 </div>
 
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-SyntaxTree::HshPtn::KeywordRestFormatter">
-  <h1 id="class-SyntaxTree::HshPtn::KeywordRestFormatter" class="class">
-    class SyntaxTree::HshPtn::KeywordRestFormatter
+<main role="main" aria-labelledby="class-SyntaxTree::CLI::STDINItem">
+  <h1 id="class-SyntaxTree::CLI::STDINItem" class="class">
+    class SyntaxTree::CLI::STDINItem
   </h1>
 
   <section class="description">
     
-<p>Formats the optional double-splat from the pattern.</p>
+<p>An item of work that corresponds to the stdin content.</p>
 
   </section>
 
@@ -96,63 +96,16 @@
 
 
 
-    <section class="attribute-method-details" class="method-section">
-      <header>
-        <h3>Attributes</h3>
-      </header>
 
-      <div id="attribute-i-keyword_rest" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">keyword_rest</span><span
-            class="attribute-access-type">[R]</span>
-        </div>
-
-        <div class="method-description">
-        <dl class="rdoc-list label-list"><dt><a href="../VarField.html"><code>VarField</code></a>
-<dd>
-<p>the parameter that matches the remaining keywords</p>
-</dd></dl>
-        </div>
-      </div>
-    </section>
-
-
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Class Methods</h3>
-       </header>
-
-      <div id="method-c-new" class="method-detail ">
-        <div class="method-heading">
-          <span class="method-name">new</span><span
-            class="method-args">(keyword_rest)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-
-        <div class="method-description">
-          
-
-          <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 4972</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">keyword_rest</span>)
-  <span class="ruby-ivar">@keyword_rest</span> = <span class="ruby-identifier">keyword_rest</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-        </div>
-
-
-      </div>
-
-    </section>
 
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
          <h3>Public Instance Methods</h3>
        </header>
 
-      <div id="method-i-comments" class="method-detail ">
+      <div id="method-i-filepath" class="method-detail ">
         <div class="method-heading">
-          <span class="method-name">comments</span><span
+          <span class="method-name">filepath</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -160,10 +113,10 @@
         <div class="method-description">
           
 
-          <div class="method-source-code" id="comments-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 4976</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">comments</span>
-  []
+          <div class="method-source-code" id="filepath-source">
+            <pre><span class="ruby-comment"># File lib/syntax_tree/cli.rb, line 60</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">filepath</span>
+  <span class="ruby-value">:stdin</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -171,21 +124,41 @@
 
       </div>
 
-      <div id="method-i-format" class="method-detail ">
+      <div id="method-i-handler" class="method-detail ">
         <div class="method-heading">
-          <span class="method-name">format</span><span
-            class="method-args">(q)</span>
+          <span class="method-name">handler</span><span
+            class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
           
 
-          <div class="method-source-code" id="format-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/node.rb, line 4980</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">format</span>(<span class="ruby-identifier">q</span>)
-  <span class="ruby-identifier">q</span>.<span class="ruby-identifier">text</span>(<span class="ruby-string">&quot;**&quot;</span>)
-  <span class="ruby-identifier">q</span>.<span class="ruby-identifier">format</span>(<span class="ruby-identifier">keyword_rest</span>)
+          <div class="method-source-code" id="handler-source">
+            <pre><span class="ruby-comment"># File lib/syntax_tree/cli.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">handler</span>
+  <span class="ruby-constant">HANDLERS</span>[<span class="ruby-string">&quot;.rb&quot;</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-source" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">source</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="source-source">
+            <pre><span class="ruby-comment"># File lib/syntax_tree/cli.rb, line 64</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">source</span>
+  <span class="ruby-identifier">$stdin</span>.<span class="ruby-identifier">read</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
